@@ -26,11 +26,17 @@ function factorial ($num){
     } else {
         return $num * factorial($num - 1);
     }
-
-    echo $resultado;
 }
 
-$n = factorial(8);
+$factorialVariable = function ($num) use (&$factorialVariable) {
+    if($num == 0){
+        return 1;
+    } else {
+        return $num * $factorialVariable($num - 1);
+    }
+};
+
+$n = $factorialVariable(9);
 
 echo "<h1>El factorial de 8 es $n</h1>";
 
