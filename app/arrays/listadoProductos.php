@@ -20,7 +20,7 @@
                 <div>
                         <h1>$key</h1>
                         <p>{$value["unidades"]} unidades</p>
-                        <p>{$value["precio"]}</p>
+                        <p>{$value["precio"]}€</p>
                         <input type='number' name='unidadesProductos[$key]' value='0'>
                 </div>";
         }
@@ -33,6 +33,7 @@
         $html = "";
 
         $unidadesProductos = $_POST["unidadesProductos"];
+        var_dump($unidadesProductos);
 
         foreach($unidadesProductos as $key => $value){
             $precioUnidad = $productos[$key]["precio"];
@@ -45,8 +46,22 @@
 
         return $html;
     }
-    function mostrarInventario(): string{
-        return "";
+    function mostrarInventario($productos): string{
+        $html = "";
+
+        $unidadesProductos = $_POST["unidadesProductos"];
+
+        foreach($productos as $key => $value){
+            $unidadesFinales = $value["unidades"] - $unidadesProductos[$key];
+            $html .= "
+                <div>
+                        <h1>$key</h1>
+                        <p>{$unidadesFinales} unidades</p>
+                        <p>{$value["precio"]}€</p>
+                </div>";
+        }
+
+        return $html;
     }
 ?>
 <!doctype html>
@@ -61,7 +76,7 @@
         if (isset($_POST['submit'])){
             //Mostrar inventario y factura
             echo mostrarFactura($productos);
-            echo mostrarInventario();
+            echo mostrarInventario($productos);
         } else {
             //Mostrar formulario
             echo mostrarFormulario($productos);
