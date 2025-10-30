@@ -1,0 +1,80 @@
+#formularioProductos{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+
+    > .productos {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+
+        > div {
+            width: 200px;
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px black solid;
+            background-color: aliceblue;
+            box-shadow: 0px 0px 10px 1px;
+        }
+    }
+
+    > .boton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        > input {
+            width: 200px;
+            height: 50px;
+            background-color: #a9f5ff;
+            border-radius: 20px;
+        }
+    }
+}
+
+#facturaProductos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    > div {
+        display: flex;
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        border: 2px black solid;
+    }
+ }
+
+#inventarioProductos{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    > div {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+
+        > div {
+            width: 200px;
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px black solid;
+            background-color: aliceblue;
+            box-shadow: 0px 0px 10px 1px;
+        }
+    }
+}
