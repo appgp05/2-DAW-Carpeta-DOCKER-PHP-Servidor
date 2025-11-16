@@ -14,9 +14,10 @@
 
             switch ($tipo_operacion) {
                 case "real":
-                    $resultado = OperacionReal::Resolver($operacion);
+                    $resultado = OperacionReal::resolver($operacion);
                     break;
                 case "racional":
+                    $resultado = OperacionRacional::resolver($operacion);
                     break;
                 case "error":
                     $resultado = "<p class='destacado'>La operación introducida no es válida<p>";

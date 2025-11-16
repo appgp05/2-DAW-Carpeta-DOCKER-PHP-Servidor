@@ -1,14 +1,24 @@
 <?php
     class OperacionReal extends Operacion {
-        public static function Resolver(String $textoOperacion): float {
-            preg_match("/[+\-*\/]/", $textoOperacion, $operador);
-            $operador = $operador[0];
+        public static function resolver(String $textoOperacion): float {
+            if(preg_match("/^-/", $textoOperacion)){
+                $posscionAnadidaAlArray = 1;
+            } else {
+                $posscionAnadidaAlArray = 0;
+            }
 
-            $operandos = preg_split("/[+\-*:\/]/", $textoOperacion);
-            $operando1 = $operandos[0];
-            $operando2 = $operandos[1];
+            preg_match_all("/(-?)[+\-*\/]/", $textoOperacion, $operador);
+            var_dump($operador);
+            $operador = $operador[0][$posscionAnadidaAlArray];
+
+            $operandos = preg_split("/(-?)[+\-*:\/]/", $textoOperacion);
+            var_dump($operandos);
+            $operando1 = $operandos[0 + $posscionAnadidaAlArray];
+            $operando2 = $operandos[1 + $posscionAnadidaAlArray];
 
             $resultado = null;
+
+            var_dump($operador, $operando1, $operando2);
 
             switch ($operador) {
                 case "+":
