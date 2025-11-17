@@ -7,22 +7,10 @@
 
     switch ($submit) {
         case "Calcular":
-            $operacion = $_POST['operacion'];
+            $textoOperacion = $_POST['operacion'];
 
-            $tipo_operacion = Operacion::resolverTipo($operacion);
-            var_dump($tipo_operacion);
-
-            switch ($tipo_operacion) {
-                case "real":
-                    $resultado = OperacionReal::resolver($operacion);
-                    break;
-                case "racional":
-                    $resultado = OperacionRacional::resolver($operacion);
-                    break;
-                case "error":
-                    $resultado = "<p class='destacado'>La operación introducida no es válida<p>";
-                    break;
-            }
+            $operacion = new Operacion($textoOperacion);
+            $resultado = $operacion->calcular();
 
             break;
         case null:

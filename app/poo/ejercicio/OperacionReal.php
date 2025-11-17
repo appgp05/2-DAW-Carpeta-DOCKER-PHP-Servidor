@@ -1,37 +1,26 @@
 <?php
     class OperacionReal extends Operacion {
-        public static function resolver(String $textoOperacion): float {
-            if(preg_match("/^-/", $textoOperacion)){
-                $posscionAnadidaAlArray = 1;
-            } else {
-                $posscionAnadidaAlArray = 0;
-            }
+        public function __construct(Operacion $operacion){
+            parent::__construct($operacion->operando1.$operacion->operador.$operacion->operando2);
+        }
 
-            preg_match_all("/(-?)[+\-*\/]/", $textoOperacion, $operador);
-            var_dump($operador);
-            $operador = $operador[0][$posscionAnadidaAlArray];
-
-            $operandos = preg_split("/(-?)[+\-*:\/]/", $textoOperacion);
-            var_dump($operandos);
-            $operando1 = $operandos[0 + $posscionAnadidaAlArray];
-            $operando2 = $operandos[1 + $posscionAnadidaAlArray];
-
+        public function calcular(): float {
             $resultado = null;
 
-            var_dump($operador, $operando1, $operando2);
+            var_dump($this->operador, $this->operando1, $this->operando2);
 
-            switch ($operador) {
+            switch ($this->operador) {
                 case "+":
-                    $resultado = $operando1 + $operando2;
+                    $resultado = $this->operando1 + $this->operando2;
                     break;
                 case "-":
-                    $resultado = $operando1 - $operando2;
+                    $resultado = $this->operando1 - $this->operando2;
                     break;
                 case "*":
-                    $resultado = $operando1 * $operando2;
+                    $resultado = $this->operando1 * $this->operando2;
                     break;
                 case "/":
-                    $resultado = $operando1 / $operando2;
+                    $resultado = $this->operando1 / $this->operando2;
                     break;
                 default:
                     break;
