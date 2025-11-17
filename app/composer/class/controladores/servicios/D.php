@@ -1,6 +1,5 @@
 <?php
 
-namespace servicios;
 class D
 {
     public function __toString()

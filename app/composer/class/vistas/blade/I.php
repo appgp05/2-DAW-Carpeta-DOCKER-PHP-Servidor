@@ -1,6 +1,5 @@
 <?php
 
-namespace blade;
 class I
 {
     public function __toString()

@@ -1,6 +1,5 @@
 <?php
 
-namespace pdf;
 class J
 {
     public function __toString()

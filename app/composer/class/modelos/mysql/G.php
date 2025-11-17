@@ -1,6 +1,5 @@
 <?php
 
-namespace mysql;
 class G
 {
     public function __toString()
