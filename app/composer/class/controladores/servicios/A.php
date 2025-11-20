@@ -1,6 +1,6 @@
 <?php
-
-class D
+namespace Controller\Services;
+class A
 {
     public function __toString()
     {

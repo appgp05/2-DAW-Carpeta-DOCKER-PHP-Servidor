@@ -1,0 +1,16 @@
+{
+    "name": "root/instituto",
+    "autoload": {
+        "psr-4": {
+            "Class\\": "Class/"
+        }
+    },
+    "authors": [
+        {
+            "name": "alberto"
+        }
+    ],
+    "require": {
+        "fakerphp/faker": "^1.24"
+    }
+}
