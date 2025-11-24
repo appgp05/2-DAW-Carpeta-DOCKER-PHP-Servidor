@@ -6,6 +6,7 @@ Run echo "</Directory>" >> /etc/apache2/sites-enabled/000-default.conf
 
 Run pecl install xdebug
 Run docker-php-ext-enable xdebug
+RUN docker-php-ext-install mysqli
 COPY --from=composer/composer:latest-bin /composer /usr/bin/composer
 
 EXPOSE 80
