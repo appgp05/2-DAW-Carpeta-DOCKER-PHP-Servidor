@@ -4,6 +4,11 @@ namespace clases\database;
 use mysqli;
 
 class Database {
+
+    /**
+     * @var Database|null
+     */
+
     private static ?Database $instance = null;
     private ?mysqli $con;
     private string $hostname;
@@ -65,6 +70,19 @@ class Database {
         }
 
         return $filas;
+    }
+
+    public function getTableColumns(string $tabla){
+        $sentencia = "DESCRIBE $tabla";
+        $res = $this->con->query($sentencia);
+        $columnas = [];
+        $columna = $res->fetch_row();
+        while($columna){
+            $columnas[] = $columna[0];
+            $columna = $res->fetch_row();
+        }
+
+        return $columnas;
     }
 }
 

@@ -1,55 +1,54 @@
 <?php
-    require __DIR__ . '/../vendor/autoload.php';
 
-    use Dotenv\Dotenv;
-    use clases\database\Database;
+use clases\database\Database;
 
-    $dotenv = Dotenv::createImmutable(__DIR__."/..");
-    $dotenv->load();
+$submit = $_POST["submit"];
 
     $database = Database::getInstance();
 
-    var_dump($database->getCon());
+    switch ($submit) {
+        case "Login":
+            break;
+        case "Register":
+            $name = $_POST["name"];
+            $password = $_POST["password"];
 
-    $html = "";
-
-    $tablas = $database->getAllTables();
-
-    foreach($tablas as $key => $tabla){
-        $html .= "<p>$tabla</p>";
-    }
-
-    $filasFamilia = $database->getTableRows("producto");
-    $html .= convertirFilasATablaHTML($filasFamilia);
-
-    function convertirFilasATablaHTML($filas){
-        $html = "";
-        $html .= "<table>";
-
-        foreach($filas as $key => $fila){
-            $html .= "<tr>";
-
-            foreach($fila as $value){
-                $html .= "<td>$value</td>";
+            $msj = $database->registerUser($name, $password);
+            if($msj){
+                header("location: sitio.php");
             }
 
-            $html .= "</tr>";
-        }
-
-        $html .= "</table>";
-
-        return $html;
+            break;
+        default:
+            break;
     }
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
 </head>
-<body>
-    <?= $html ?>
+<body class="h-scrren flex justify-center items-center">
+    <fieldset class="bg-yellow-200">
+        <legend class="text-blue-800 text-2xl">Datos de acceso</legend>
+
+        <form action="">
+            <div>
+                <label for="">Usuario</label>
+                <input type="text" name="name">
+            </div>
+            <div>
+                <label for="">Pssword</label>
+                <input type="text" name="password">
+            </div>
+            <div>
+                <input type="submit" value="Login">
+                <input type="submit" value="Register">
+            </div>
+        </form>
+    </fieldset>
 </body>
 </html>
