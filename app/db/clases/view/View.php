@@ -10,6 +10,16 @@ namespace clases\view;
      */
 
     class View {
+        public static function getHeader(mixed $usuario, string $page):string{
+            $header_html = "<div class='flex flex-row justify-end px-S items-center h-12'>";
+            $header_html .= $usuario;
+            $header_html .= "<form method='post' action='$page'>";
+            $header_html .= "<input type='submit' name='submit' value='Logout'>";
+            $header_html .= "</form>";
+
+            return $header_html;
+        }
+
         public static function convertirATablaHTML($tabla, $columnas, $filas){
             if(count($filas) == 0){
                 return "<h1>La tabla $tabla no tiene contenidos</h1>";
@@ -77,7 +87,7 @@ namespace clases\view;
 
         public static function botonesTablas($tablas){
             $html = "";
-            $html .= "<form method='post' action='sitio.php'>";
+            $html .= "<form method='post' action='listado.php'>";
 
             foreach ($tablas as $tabla) {
                 $html .= "<input type='submit' name='tabla' value='".$tabla."'>";

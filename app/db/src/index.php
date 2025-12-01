@@ -1,20 +1,38 @@
 <?php
+    require __DIR__ . '/../vendor/autoload.php';
 
-use clases\database\Database;
+    use Dotenv\Dotenv;
+    use clases\database\Database;
 
-$submit = $_POST["submit"];
+    $dotenv = Dotenv::createImmutable(__DIR__."/..");
+    $dotenv->load();
+
+    session_start();
 
     $database = Database::getInstance();
 
+    $submit = $_POST["submit"]??null;
     switch ($submit) {
         case "Login":
+            $name = $_POST["name"];
+            $password = $_POST["password"];
+
+            $msj = $database->validar_usuario($name, $password);
+
+            if($msj === true){
+                $_SESSION["usuario"] = $name;
+                header("location: sitio.php");
+            }
+
             break;
         case "Register":
             $name = $_POST["name"];
             $password = $_POST["password"];
 
-            $msj = $database->registerUser($name, $password);
+            $msj = $database->registrarse($name, $password);
+
             if($msj){
+                $_SESSION["usuario"] = $name;
                 header("location: sitio.php");
             }
 
@@ -35,20 +53,21 @@ $submit = $_POST["submit"];
     <fieldset class="bg-yellow-200">
         <legend class="text-blue-800 text-2xl">Datos de acceso</legend>
 
-        <form action="">
+        <form action="index.php" method="post">
             <div>
                 <label for="">Usuario</label>
                 <input type="text" name="name">
             </div>
             <div>
-                <label for="">Pssword</label>
+                <label for="">Password</label>
                 <input type="text" name="password">
             </div>
             <div>
-                <input type="submit" value="Login">
-                <input type="submit" value="Register">
+                <input type="submit" name="submit" value="Login">
+                <input type="submit" name="submit" value="Register">
             </div>
         </form>
     </fieldset>
+<span class="text-sm text-red-400"><?= $msj??'' ?></span>
 </body>
 </html>

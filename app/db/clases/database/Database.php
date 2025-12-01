@@ -2,6 +2,7 @@
 namespace clases\database;
 
 use mysqli;
+use mysqli_sql_exception;
 
 class Database {
 
@@ -83,6 +84,39 @@ class Database {
         }
 
         return $columnas;
+    }
+
+    /**
+     * @param string $usuario
+     * @param string $password
+     * @return bool|string con el error de la no inserción
+     */
+
+    public function registrarse(string $usuario, string $password):bool|string{
+        $sentencia = "INSERT INTO usuarios (nombre, password) VALUES ('$usuario', '$password')";
+        try {
+            $res = $this->con->query($sentencia);
+            if($res){
+                return true;
+            } else {
+                return "No se ha podido insertar el usuario";
+            }
+        } catch (mysqli_sql_exception $e) {
+            return "Error insertando usuario $usuario ".$e->getMessage();
+        }
+    }
+
+    public function validar_usuario(string $usuario, string $password):bool|string{
+        $sentencia = "SELECT * FROM usuarios WHERE nombre = '$usuario' and password = '$password'";
+        try {
+            $res = $this->con->query($sentencia);
+            if($res->num_rows > 0){
+                return true;
+            }
+            return "El usuario no existe en la base de datos";
+        } catch (mysqli_sql_exception $e) {
+            return "Error validando usuario $usuario ".$e->getMessage();
+        }
     }
 }
 

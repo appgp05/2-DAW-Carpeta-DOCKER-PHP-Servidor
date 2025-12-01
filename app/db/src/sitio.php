@@ -8,24 +8,29 @@ use clases\view\View;
 $dotenv = Dotenv::createImmutable(__DIR__."/..");
 $dotenv->load();
 
+session_start();
+
 $database = Database::getInstance();
 
-var_dump($database->getCon());
+$submit = $_POST['submit']??null;
+if($submit == "Logout"){
+    $_SESSION['usuario'] = null;
+    header("Location: index.php");
+}
+
+$usuario = $_SESSION["usuario"]??null;
+if(is_null($usuario)){
+    header("location: index.php");
+    exit;
+}
 
 $html = "";
 
-$tablas = $database->getAllTables();
-var_dump($tablas);
+$html .= View::getHeader($usuario, $_SERVER["PHP_SELF"]);
 
+$tablas = $database->getAllTables();
 $html .= View::botonesTablas($tablas);
 
-if (isset($_POST['tabla'])){
-    $tablaAMostrar = $_POST['tabla'];
-
-    $columnasFamilia = $database->getTableColumns($tablaAMostrar);
-    $filasFamilia = $database->getTableRows($tablaAMostrar);
-    $html .= View::convertirATablaHTML($tablaAMostrar, $columnasFamilia, $filasFamilia);
-}
 ?>
 
 <!doctype html>
