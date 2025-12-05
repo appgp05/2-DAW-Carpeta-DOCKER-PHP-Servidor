@@ -16,6 +16,7 @@
       <path value="$PROJECT_DIR$/app/instituto/vendor/symfony/deprecation-contracts" />
       <path value="$PROJECT_DIR$/app/instituto/vendor/fakerphp/faker" />
       <path value="$PROJECT_DIR$/app/instituto/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/app/EjercicioExamen/vendor/composer" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.4" />
