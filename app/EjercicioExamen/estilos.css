@@ -5,3 +5,10 @@ form{
     align-items: center;
     justify-content: center;
 }
+
+.colores{
+    display: flex;
+
+    align-items: center;
+    justify-content: space-evenly;
+}

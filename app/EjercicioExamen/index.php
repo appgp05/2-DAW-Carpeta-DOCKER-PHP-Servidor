@@ -3,53 +3,61 @@ require_once "./vendor/autoload.php";
 
 use clases\Plantilla;
 use clases\Clave;
+use clases\Jugada;
 
 session_start();
-
-
-$colores = [
-    ["Azul", "blue"],
-    ["Rojo", "red"],
-    ["Naranja", "orange"],
-    ["Verde", "green"],
-    ["Violeta", "violet"],
-    ["Amarillo", "yellow"],
-    ["Marrón", "brown"],
-    ["Rosa", "pink"],
-];
 
 $clave = new Clave;
 
 $submit = $_POST["submit"]??null;
 
+$html = "";
+
+$botonMostrarClave = true;
+
 switch ($submit) {
     case "Mostrar Clave":
-        var_dump($_SESSION["clave"]);
+        var_dump($_SESSION);
+
+        $html .= Plantilla::mostrarColores($_SESSION["clave"]);
+        $botonMostrarClave = false;
+
+        break;
+    case "Ocultar Clave":
+        $botonMostrarClave = true;
+
         break;
     case "Resetear la Clave":
+        session_destroy();
+        session_start();
+        //session_reset();
 
-        $claveGenerada = $clave->generar($colores);
+        $claveGenerada = $clave->generar();
 
         $_SESSION['clave'] = $claveGenerada;
         break;
+    case "Jugar":
+        //var_dump($_POST['colores']);
+
+        $jugada = new Jugada(1, $_POST['colores']);
+
+        $_SESSION['jugadas'][] = $jugada;
+
+        break;
 }
 
-$html = "";
 
-
+var_dump($_POST);
 
 
 if(!isset($_SESSION["clave"])) {
-    $claveGenerada = $clave->generar($colores);
+    $claveGenerada = $clave->generar();
 
     $_SESSION['clave'] = $claveGenerada;
 }
 
-
-$html = "";
-
-$html .= Plantilla::mostrarFormularioAcciones();
-$html .= Plantilla::mostrarFormularioJugar($colores);
+$html .= Plantilla::mostrarFormularioAcciones($botonMostrarClave);
+$html .= Plantilla::mostrarFormularioJugar();
 ?>
 
 

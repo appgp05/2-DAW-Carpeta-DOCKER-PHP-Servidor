@@ -6,7 +6,9 @@ class Clave {
     private array $clave;
     function __construct() {}
 
-    function generar(array $colores): array{
+    function generar(): array{
+        $colores = Colores::obtenerColores();
+
         random_int(0,count($colores)-1);
 
         $coloresClave = [];
