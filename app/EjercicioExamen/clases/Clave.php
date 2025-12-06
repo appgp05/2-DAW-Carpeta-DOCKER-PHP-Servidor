@@ -5,7 +5,6 @@ namespace clases;
 class Clave {
     private array $clave;
     function __construct() {}
-
     function generar(): array{
         $colores = Colores::obtenerColores();
 

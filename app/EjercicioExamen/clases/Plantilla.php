@@ -2,14 +2,12 @@
 namespace clases;
 
 class Plantilla {
-    //TODO cambiar actions formularios
-
     public static function mostrarColores($colores): string{
         $html = "";
 
         $html .= "<div class='colores'>";
         forEach($colores as $clave => $valor){
-            $html .= "<p style='background-color: $valor[1]; color: white'>$valor[0]</p>";
+            $html .= "<p class='color$valor'>$valor</p>";
         }
         $html .= "</div>";
 
@@ -24,11 +22,26 @@ class Plantilla {
         forEach($jugadas as $claveJugada => $jugada){
             $html .= "<div class='jugada'>";
 
+            $html .= "<div class='posiciones'>";
+
+            forEach($jugada->getPosiciones()[0] as $clave => $valor){
+                $html .= "<p class='posicionNegra'>$clave</p>";
+            }
+            forEach($jugada->getPosiciones()[1] as $clave => $valor){
+                $html .= "<p class='posicionBlanca'>$clave</p>";
+            }
+
+            $html .= "</div>";
+
+            $html .= "<div class='colores'>";
+
             $coloresJugada = $jugada->getCombinacionColores();
-            $html .= "<p>".$coloresJugada[0][0]."</p>";
-            $html .= "<p>".$coloresJugada[1][0]."</p>";
-            $html .= "<p>".$coloresJugada[2][0]."</p>";
-            $html .= "<p>".$coloresJugada[3][0]."</p>";
+            $html .= "<p class='color".$coloresJugada[0]."'>".$coloresJugada[0]."</p>";
+            $html .= "<p class='color".$coloresJugada[1]."'>".$coloresJugada[1]."</p>";
+            $html .= "<p class='color".$coloresJugada[2]."'>".$coloresJugada[2]."</p>";
+            $html .= "<p class='color".$coloresJugada[3]."'>".$coloresJugada[3]."</p>";
+
+            $html .= "</div>";
 
             $html .= "</div>";
         }
@@ -53,22 +66,26 @@ class Plantilla {
         return $html;
     }
 
-    public static function mostrarFormularioJugar(array $coloresJugadaAnterior): string {
+    public static function mostrarFormularioJugar(array $coloresJugadaAnterior, string $mensaje): string {
         $colores = Colores::obtenerColores();
         $html = "";
 
         $html .= "<form method='post' action='index.php'>";
 
+        $html .= "<p class='mensaje'>$mensaje</p>";
+
+        $html .= "<div id='selectsColores'>";
         for($i = 0; $i < 4; ++$i){
             $html .= "<select name='colores[]'>";
 
             $html .= "<option selected hidden>Colores</option>";
 
-            forEach($colores as $clave => $valor){
-                $html .= "<option value='$valor[0]' style='background-color: $valor[1]; color: white'".(($valor[0] == ($coloresJugadaAnterior[$i]??null))?"selected":"").">$valor[0]</option>";
+            forEach($colores as $claveColor => $color){
+                $html .= "<option value='$color' class='color$color'".(($color == ($coloresJugadaAnterior[$i]??null))?"selected":"").">$color</option>";
             }
             $html .= "</select>";
         }
+        $html .= "</div>";
 
         $html .= "<input type='submit' name='submit' value='Jugar'>";
 

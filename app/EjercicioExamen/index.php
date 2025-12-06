@@ -11,31 +11,31 @@ $clave = new Clave;
 
 $submit = $_POST["submit"]??null;
 
+$mensaje = "";
 $html = "";
 
-$botonMostrarClave = true;
+$botonMostrarClave = $_SESSION["botonMostrarClave"]??true;
 
 switch ($submit) {
     case "Mostrar Clave":
-        $html .= Plantilla::mostrarColores($_SESSION["clave"]);
+        $_SESSION["mostrarClave"] = true;
         $botonMostrarClave = false;
 
         break;
     case "Ocultar Clave":
+        $_SESSION["mostrarClave"] = false;
         $botonMostrarClave = true;
 
         break;
     case "Resetear la Clave":
         session_destroy();
         session_start();
-        //session_reset();
 
         $claveGenerada = $clave->generar();
 
         $_SESSION["clave"] = $claveGenerada;
         break;
     case "Jugar":
-        //var_dump($_POST['colores']);
 
         $jugada = new Jugada(1, $_POST["colores"]);
 
@@ -44,9 +44,8 @@ switch ($submit) {
         if($jugadaCorrecta){
             $_SESSION["jugadas"][] = $jugada;
         } else {
-
+            $mensaje = "Debes seleccionar 4 colores para jugar";
         }
-
 
         break;
 }
@@ -60,8 +59,11 @@ if(!isset($_SESSION["clave"])) {
     $_SESSION["clave"] = $claveGenerada;
 }
 
+if($_SESSION["mostrarClave"]??true){
+    $html .= Plantilla::mostrarColores($_SESSION["clave"]);
+}
 $html .= Plantilla::mostrarFormularioAcciones($botonMostrarClave);
-$html .= Plantilla::mostrarFormularioJugar($_POST["colores"]??[]);
+$html .= Plantilla::mostrarFormularioJugar($_POST["colores"]??[], $mensaje);
 $html .= Plantilla::mostrarJugadasAnteriores($_SESSION["jugadas"]??[]);
 ?>
 
