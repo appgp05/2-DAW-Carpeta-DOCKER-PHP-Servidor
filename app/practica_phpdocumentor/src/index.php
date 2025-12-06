@@ -10,7 +10,7 @@
  * - Espera $_POST['submit'] con el valor "Calcular" para disparar el cálculo.
  *
  * @package Calculadora
- * @author Tu Nombre
+ * @author Alberto
  * @license MIT
  * @version 1.0
  */

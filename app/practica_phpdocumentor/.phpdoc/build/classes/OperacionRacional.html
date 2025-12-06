@@ -82,7 +82,7 @@
             <div class="phpdocumentor-column -nine phpdocumentor-content">
                                 <section>
                                         <ul class="phpdocumentor-breadcrumbs">
-            <li class="phpdocumentor-breadcrumb"><a href="packages/Application.html">Application</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="packages/Calculadora.html">Calculadora</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
@@ -96,7 +96,7 @@
             <div class="phpdocumentor-element__package">
             in package
             <ul class="phpdocumentor-breadcrumbs">
-                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Application.html">Application</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Calculadora.html">Calculadora</a></li>
                             </ul>
         </div>
     
@@ -111,14 +111,63 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/OperacionRacional.php"><a href="files/src-operacionracional.html"><abbr title="src/OperacionRacional.php">OperacionRacional.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
-        
+            <p class="phpdocumentor-summary">Operaciones sobre números racionales.</p>
 
 
+    <section class="phpdocumentor-description"><p>Esta clase extiende Operacion y se encarga de:</p>
+<ul>
+<li>Construir una operación racional a partir de una operación previa.</li>
+<li>Ejecutar la operación delegando en métodos privados que realizan
+suma, resta, multiplicación y división sobre instancias de Racional.</li>
+</ul>
+</section>
 
+
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/OperacionRacional.html#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">author</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>Alberto</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">license</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>MIT</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">version</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.0</span>
+                                                                                
+                                             
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">see</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><a href="classes/Operacion.html"><abbr title="\Operacion">Operacion</abbr></a></span>
+                                        
+                                             
+                                    </dd>
+                                            </dl>
 
     
     
@@ -145,18 +194,21 @@
     <span>
         &nbsp;= 3                            </span>
 </dt>
+<dd>Tipo: operación inválida / no reconocida.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a class="" href="classes/Operacion.html#constant_RACIONAL">RACIONAL</a>
     <span>
         &nbsp;= 2                            </span>
 </dt>
+<dd>Tipo: operación con números racionales (ej. 5/1:2/3).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a class="" href="classes/Operacion.html#constant_REAL">REAL</a>
     <span>
         &nbsp;= 1                            </span>
 </dt>
+<dd>Tipo: operación con números reales (ej. 5.1+3.2).</dd>
 
     </dl>
 
@@ -172,24 +224,28 @@
     <span>
                         &nbsp;: string            </span>
 </dt>
+<dd>Operador extraído de la expresion (por ejemplo &#039;+&#039;, &#039;-&#039;, &#039;*&#039;, &#039;/&#039;, &#039;:&#039;).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/Operacion.html#property_operando1">$operando1</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
+<dd>Primer operando como cadena (tal y como vino en la entrada).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/Operacion.html#property_operando2">$operando2</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
+<dd>Segundo operando como cadena (tal y como vino en la entrada).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/Operacion.html#property_tipo">$tipo</a>
     <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: int            </span>
 </dt>
+<dd>Tipo de la operación.</dd>
 
     </dl>
 
@@ -202,38 +258,44 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/OperacionRacional.html#method___construct">__construct()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: void    </span>
 </dt>
+<dd>Constructor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/OperacionRacional.html#method_calcular">calcular()</a>
     <span>
                                 &nbsp;: <a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a>    </span>
 </dt>
+<dd>Calcula el resultado de la operación racional.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/OperacionRacional.html#method_dividir">dividir()</a>
     <span>
                                 &nbsp;: <a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a>    </span>
 </dt>
+<dd>Divide dos racionales y devuelve el resultado simplificado.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/OperacionRacional.html#method_multiplicar">multiplicar()</a>
     <span>
                                 &nbsp;: <a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a>    </span>
 </dt>
+<dd>Multiplica dos racionales y devuelve el resultado simplificado.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/OperacionRacional.html#method_restar">restar()</a>
     <span>
                                 &nbsp;: <a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a>    </span>
 </dt>
+<dd>Resta dos racionales y devuelve el resultado simplificado.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/OperacionRacional.html#method_sumar">sumar()</a>
     <span>
                                 &nbsp;: <a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a>    </span>
 </dt>
+<dd>Suma dos racionales y devuelve el resultado simplificado.</dd>
 
     </dl>
 
@@ -256,11 +318,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Operacion.php"><a href="files/src-operacion.html"><abbr title="src/Operacion.php">Operacion.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">5</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Tipo: operación inválida / no reconocida.</p>
+
     
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -286,11 +349,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Operacion.php"><a href="files/src-operacion.html"><abbr title="src/Operacion.php">Operacion.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">4</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Tipo: operación con números racionales (ej. 5/1:2/3).</p>
+
     
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -316,11 +380,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Operacion.php"><a href="files/src-operacion.html"><abbr title="src/Operacion.php">Operacion.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">3</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Tipo: operación con números reales (ej. 5.1+3.2).</p>
+
     
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -362,11 +427,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Operacion.php"><a href="files/src-operacion.html"><abbr title="src/Operacion.php">Operacion.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">7</span>
+    <span class="phpdocumentor-element-found-in__line">48</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Operador extraído de la expresion (por ejemplo &#039;+&#039;, &#039;-&#039;, &#039;*&#039;, &#039;/&#039;, &#039;:&#039;).</p>
+
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">protected</span>
@@ -399,11 +465,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Operacion.php"><a href="files/src-operacion.html"><abbr title="src/Operacion.php">Operacion.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">8</span>
+    <span class="phpdocumentor-element-found-in__line">55</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Primer operando como cadena (tal y como vino en la entrada).</p>
+
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">protected</span>
@@ -436,11 +503,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Operacion.php"><a href="files/src-operacion.html"><abbr title="src/Operacion.php">Operacion.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">9</span>
+    <span class="phpdocumentor-element-found-in__line">62</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Segundo operando como cadena (tal y como vino en la entrada).</p>
+
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">protected</span>
@@ -473,19 +541,22 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Operacion.php"><a href="files/src-operacion.html"><abbr title="src/Operacion.php">Operacion.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">6</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Tipo de la operación.</p>
+
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">protected</span>
-            <span class="phpdocumentor-signature__type">string</span>
+            <span class="phpdocumentor-signature__type">int</span>
     <span class="phpdocumentor-signature__name">$tipo</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Valores esperados: self::REAL | self::RACIONAL | self::ERROR</p>
+</section>
+
     
     
 
@@ -515,31 +586,53 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/OperacionRacional.php"><a href="files/src-operacionracional.html"><abbr title="src/OperacionRacional.php">OperacionRacional.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">3</span>
+    <span class="phpdocumentor-element-found-in__line">30</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Constructor.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$operacion</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Operacion.html"><abbr title="\Operacion">Operacion</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$operacion</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>Recibe una instancia (u objeto) que contiene las propiedades
+<code class="prettyprint">operando1</code>, <code class="prettyprint">operador</code> y <code class="prettyprint">operando2</code> y llama al constructor
+del padre con la concatenación correspondiente.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$operacion</span>
-                : <span class="phpdocumentor-argument-list__argument__type">mixed</span>
+                : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Operacion.html"><abbr title="\Operacion">Operacion</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Objeto con propiedades operando1, operador y operando2.</p>
+</section>
+
             </dd>
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/OperacionRacional.html#method___construct#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">see</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><a href="classes/Operacion.html#method___construct"><abbr title="\Operacion::__construct()">Operacion::__construct()</abbr></a></span>
+                                        
+                                             
+                                    </dd>
+                                            </dl>
 
         
     
@@ -559,11 +652,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/OperacionRacional.php"><a href="files/src-operacionracional.html"><abbr title="src/OperacionRacional.php">OperacionRacional.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">6</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Calcula el resultado de la operación racional.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">calcular</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a></span></code>
@@ -571,7 +665,10 @@
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>Crea dos instancias de Racional a partir de los operandos y delega en
+los métodos privados correspondientes a cada operador.</p>
+</section>
+
     
     
 
@@ -580,6 +677,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Resultado simplificado de la operación racional.</p>
+</section>
+
             </section>
 
 </article>
@@ -597,11 +698,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/OperacionRacional.php"><a href="files/src-operacionracional.html"><abbr title="src/OperacionRacional.php">OperacionRacional.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">56</span>
+    <span class="phpdocumentor-element-found-in__line">124</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Divide dos racionales y devuelve el resultado simplificado.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
                     <span class="phpdocumentor-signature__name">dividir</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$racional1</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$racional2</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a></span></code>
@@ -617,14 +719,18 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Dividendo.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$racional2</span>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Divisor.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -635,6 +741,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Resultado simplificado de la división.</p>
+</section>
+
             </section>
 
 </article>
@@ -652,11 +762,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/OperacionRacional.php"><a href="files/src-operacionracional.html"><abbr title="src/OperacionRacional.php">OperacionRacional.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">48</span>
+    <span class="phpdocumentor-element-found-in__line">108</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Multiplica dos racionales y devuelve el resultado simplificado.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
                     <span class="phpdocumentor-signature__name">multiplicar</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$racional1</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$racional2</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a></span></code>
@@ -672,14 +783,18 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Primer factor.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$racional2</span>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Segundo factor.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -690,6 +805,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Resultado simplificado de la multiplicación.</p>
+</section>
+
             </section>
 
 </article>
@@ -707,11 +826,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/OperacionRacional.php"><a href="files/src-operacionracional.html"><abbr title="src/OperacionRacional.php">OperacionRacional.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">40</span>
+    <span class="phpdocumentor-element-found-in__line">92</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Resta dos racionales y devuelve el resultado simplificado.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
                     <span class="phpdocumentor-signature__name">restar</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$racional1</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$racional2</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a></span></code>
@@ -727,14 +847,18 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Minuendo.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$racional2</span>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Sustraendo.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -745,6 +869,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Resultado simplificado de la resta.</p>
+</section>
+
             </section>
 
 </article>
@@ -762,11 +890,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/OperacionRacional.php"><a href="files/src-operacionracional.html"><abbr title="src/OperacionRacional.php">OperacionRacional.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Suma dos racionales y devuelve el resultado simplificado.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
                     <span class="phpdocumentor-signature__name">sumar</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$racional1</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$racional2</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a></span></code>
@@ -782,14 +911,18 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Primer sumando.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-argument-list__argument__name">$racional2</span>
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Segundo sumando.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -800,6 +933,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type"><a href="classes/Racional.html"><abbr title="\Racional">Racional</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Resultado simplificado de la suma.</p>
+</section>
+
             </section>
 
 </article>

@@ -82,7 +82,7 @@
             <div class="phpdocumentor-column -nine phpdocumentor-content">
                                 <section>
                                         <ul class="phpdocumentor-breadcrumbs">
-            <li class="phpdocumentor-breadcrumb"><a href="packages/Application.html">Application</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="packages/Calculadora.html">Calculadora</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
@@ -96,7 +96,7 @@
             <div class="phpdocumentor-element__package">
             in package
             <ul class="phpdocumentor-breadcrumbs">
-                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Application.html">Application</a></li>
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Calculadora.html">Calculadora</a></li>
                             </ul>
         </div>
     
@@ -111,14 +111,64 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/OperacionReal.php"><a href="files/src-operacionreal.html"><abbr title="src/OperacionReal.php">OperacionReal.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">2</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
-        
+            <p class="phpdocumentor-summary">Operaciones sobre números reales.</p>
 
 
+    <section class="phpdocumentor-description"><p>Esta clase extiende Operacion y ejecuta la operación cuando los operandos son reales.
+Delegación:</p>
+<ul>
+<li>Recibe una instancia de Operacion (con operando1, operador, operando2).</li>
+<li>Llama al constructor del padre con la expresión reconstruida.</li>
+<li>Implementa el método calcular() que realiza la operación aritmética.</li>
+</ul>
+</section>
 
+
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/OperacionReal.html#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">author</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>Alberto</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">license</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                
+                                                 <section class="phpdocumentor-description"><p>MIT</p>
+</section>
+
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">version</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                            <span class="phpdocumentor-tag-link">1.0</span>
+                                                                                
+                                             
+                                    </dd>
+                                                <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">see</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><a href="classes/Operacion.html"><abbr title="\Operacion">Operacion</abbr></a></span>
+                                        
+                                             
+                                    </dd>
+                                            </dl>
 
     
     
@@ -145,18 +195,21 @@
     <span>
         &nbsp;= 3                            </span>
 </dt>
+<dd>Tipo: operación inválida / no reconocida.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a class="" href="classes/Operacion.html#constant_RACIONAL">RACIONAL</a>
     <span>
         &nbsp;= 2                            </span>
 </dt>
+<dd>Tipo: operación con números racionales (ej. 5/1:2/3).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -constant -public">
     <a class="" href="classes/Operacion.html#constant_REAL">REAL</a>
     <span>
         &nbsp;= 1                            </span>
 </dt>
+<dd>Tipo: operación con números reales (ej. 5.1+3.2).</dd>
 
     </dl>
 
@@ -172,24 +225,28 @@
     <span>
                         &nbsp;: string            </span>
 </dt>
+<dd>Operador extraído de la expresion (por ejemplo &#039;+&#039;, &#039;-&#039;, &#039;*&#039;, &#039;/&#039;, &#039;:&#039;).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/Operacion.html#property_operando1">$operando1</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
+<dd>Primer operando como cadena (tal y como vino en la entrada).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/Operacion.html#property_operando2">$operando2</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
+<dd>Segundo operando como cadena (tal y como vino en la entrada).</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
     <a class="" href="classes/Operacion.html#property_tipo">$tipo</a>
     <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: int            </span>
 </dt>
+<dd>Tipo de la operación.</dd>
 
     </dl>
 
@@ -202,14 +259,16 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/OperacionReal.html#method___construct">__construct()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: void    </span>
 </dt>
+<dd>Constructor.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/OperacionReal.html#method_calcular">calcular()</a>
     <span>
                                 &nbsp;: float    </span>
 </dt>
+<dd>Calcula el resultado de la operación sobre operandos reales.</dd>
 
     </dl>
 
@@ -232,11 +291,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Operacion.php"><a href="files/src-operacion.html"><abbr title="src/Operacion.php">Operacion.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">5</span>
+    <span class="phpdocumentor-element-found-in__line">32</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Tipo: operación inválida / no reconocida.</p>
+
     
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -262,11 +322,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Operacion.php"><a href="files/src-operacion.html"><abbr title="src/Operacion.php">Operacion.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">4</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Tipo: operación con números racionales (ej. 5/1:2/3).</p>
+
     
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -292,11 +353,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Operacion.php"><a href="files/src-operacion.html"><abbr title="src/Operacion.php">Operacion.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">3</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Tipo: operación con números reales (ej. 5.1+3.2).</p>
+
     
     <code class="phpdocumentor-signature phpdocumentor-code ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -338,11 +400,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Operacion.php"><a href="files/src-operacion.html"><abbr title="src/Operacion.php">Operacion.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">7</span>
+    <span class="phpdocumentor-element-found-in__line">48</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Operador extraído de la expresion (por ejemplo &#039;+&#039;, &#039;-&#039;, &#039;*&#039;, &#039;/&#039;, &#039;:&#039;).</p>
+
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">protected</span>
@@ -375,11 +438,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Operacion.php"><a href="files/src-operacion.html"><abbr title="src/Operacion.php">Operacion.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">8</span>
+    <span class="phpdocumentor-element-found-in__line">55</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Primer operando como cadena (tal y como vino en la entrada).</p>
+
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">protected</span>
@@ -412,11 +476,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Operacion.php"><a href="files/src-operacion.html"><abbr title="src/Operacion.php">Operacion.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">9</span>
+    <span class="phpdocumentor-element-found-in__line">62</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Segundo operando como cadena (tal y como vino en la entrada).</p>
+
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">protected</span>
@@ -449,19 +514,22 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Operacion.php"><a href="files/src-operacion.html"><abbr title="src/Operacion.php">Operacion.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">6</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Tipo de la operación.</p>
+
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
         <span class="phpdocumentor-signature__visibility">protected</span>
-            <span class="phpdocumentor-signature__type">string</span>
+            <span class="phpdocumentor-signature__type">int</span>
     <span class="phpdocumentor-signature__name">$tipo</span>
     </code>
 
-    
+        <section class="phpdocumentor-description"><p>Valores esperados: self::REAL | self::RACIONAL | self::ERROR</p>
+</section>
+
     
     
 
@@ -491,19 +559,23 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/OperacionReal.php"><a href="files/src-operacionreal.html"><abbr title="src/OperacionReal.php">OperacionReal.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">3</span>
+    <span class="phpdocumentor-element-found-in__line">30</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Constructor.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Operacion.html"><abbr title="\Operacion">Operacion</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$operacion</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__type"><a href="classes/Operacion.html"><abbr title="\Operacion">Operacion</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$operacion</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>Inicializa la operación real a partir de un objeto Operacion que contiene
+las propiedades <code class="prettyprint">operando1</code>, <code class="prettyprint">operador</code> y <code class="prettyprint">operando2</code>.</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -511,11 +583,28 @@
                 : <span class="phpdocumentor-argument-list__argument__type"><a href="classes/Operacion.html"><abbr title="\Operacion">Operacion</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Objeto con propiedades operando1, operador y operando2.</p>
+</section>
+
             </dd>
             </dl>
 
     
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/OperacionReal.html#method___construct#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">see</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                                    <span class="phpdocumentor-tag-link"><a href="classes/Operacion.html#method___construct"><abbr title="\Operacion::__construct()">Operacion::__construct()</abbr></a></span>
+                                        
+                                             
+                                    </dd>
+                                            </dl>
 
         
     
@@ -535,11 +624,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/OperacionReal.php"><a href="files/src-operacionreal.html"><abbr title="src/OperacionReal.php">OperacionReal.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">7</span>
+    <span class="phpdocumentor-element-found-in__line">44</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Calcula el resultado de la operación sobre operandos reales.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">calcular</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">float</span></code>
@@ -547,7 +637,12 @@
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>Nota sobre tipos: este método devuelve un float. El código actual utiliza
+directamente <code class="prettyprint">$this-&gt;operando1</code> y <code class="prettyprint">$this-&gt;operando2</code> en las operaciones;
+phpDocumentor documenta aquí la expectativa de que esos valores sean numéricos
+(float|int) o coercibles a float.</p>
+</section>
+
     
     
 
@@ -556,6 +651,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">float</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Resultado de la operación como número de punto flotante.</p>
+</section>
+
             </section>
 
 </article>
