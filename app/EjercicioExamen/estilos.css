@@ -11,4 +11,22 @@ form{
 
     align-items: center;
     justify-content: space-evenly;
+
+    > p {
+        width: 100%;
+        height: 30px;
+        text-align: center;
+    }
+}
+
+.jugadas{
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    > .jugada{
+        display: flex;
+    }
 }

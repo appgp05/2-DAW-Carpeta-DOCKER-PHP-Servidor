@@ -17,8 +17,6 @@ $botonMostrarClave = true;
 
 switch ($submit) {
     case "Mostrar Clave":
-        var_dump($_SESSION);
-
         $html .= Plantilla::mostrarColores($_SESSION["clave"]);
         $botonMostrarClave = false;
 
@@ -34,14 +32,21 @@ switch ($submit) {
 
         $claveGenerada = $clave->generar();
 
-        $_SESSION['clave'] = $claveGenerada;
+        $_SESSION["clave"] = $claveGenerada;
         break;
     case "Jugar":
         //var_dump($_POST['colores']);
 
-        $jugada = new Jugada(1, $_POST['colores']);
+        $jugada = new Jugada(1, $_POST["colores"]);
 
-        $_SESSION['jugadas'][] = $jugada;
+        $jugadaCorrecta = $jugada->comprobarJugada();
+
+        if($jugadaCorrecta){
+            $_SESSION["jugadas"][] = $jugada;
+        } else {
+
+        }
+
 
         break;
 }
@@ -49,15 +54,15 @@ switch ($submit) {
 
 var_dump($_POST);
 
-
 if(!isset($_SESSION["clave"])) {
     $claveGenerada = $clave->generar();
 
-    $_SESSION['clave'] = $claveGenerada;
+    $_SESSION["clave"] = $claveGenerada;
 }
 
 $html .= Plantilla::mostrarFormularioAcciones($botonMostrarClave);
-$html .= Plantilla::mostrarFormularioJugar();
+$html .= Plantilla::mostrarFormularioJugar($_POST["colores"]??[]);
+$html .= Plantilla::mostrarJugadasAnteriores($_SESSION["jugadas"]??[]);
 ?>
 
 
@@ -69,6 +74,7 @@ $html .= Plantilla::mostrarFormularioJugar();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
     <link rel="stylesheet" href="estilos.css">
+    <script src="script.js"></script>
 </head>
 <body>
     <?= $html ?>

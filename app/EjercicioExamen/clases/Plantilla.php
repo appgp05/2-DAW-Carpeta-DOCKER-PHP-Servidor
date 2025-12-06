@@ -16,6 +16,28 @@ class Plantilla {
         return $html;
     }
 
+    public static function mostrarJugadasAnteriores(array $jugadas): string {
+        $html = "";
+
+        $html .= "<div class='jugadas'>";
+
+        forEach($jugadas as $claveJugada => $jugada){
+            $html .= "<div class='jugada'>";
+
+            $coloresJugada = $jugada->getCombinacionColores();
+            $html .= "<p>".$coloresJugada[0][0]."</p>";
+            $html .= "<p>".$coloresJugada[1][0]."</p>";
+            $html .= "<p>".$coloresJugada[2][0]."</p>";
+            $html .= "<p>".$coloresJugada[3][0]."</p>";
+
+            $html .= "</div>";
+        }
+
+        $html .= "</div>";
+
+        return $html;
+    }
+
     public static function mostrarFormularioAcciones($botonMostrarClave): string {
         $html = "";
 
@@ -31,7 +53,7 @@ class Plantilla {
         return $html;
     }
 
-    public static function mostrarFormularioJugar(): string {
+    public static function mostrarFormularioJugar(array $coloresJugadaAnterior): string {
         $colores = Colores::obtenerColores();
         $html = "";
 
@@ -43,7 +65,7 @@ class Plantilla {
             $html .= "<option selected hidden>Colores</option>";
 
             forEach($colores as $clave => $valor){
-                $html .= "<option value='$valor[0]' style='background-color: $valor[1]; color: white'>$valor[0]</option>";
+                $html .= "<option value='$valor[0]' style='background-color: $valor[1]; color: white'".(($valor[0] == ($coloresJugadaAnterior[$i]??null))?"selected":"").">$valor[0]</option>";
             }
             $html .= "</select>";
         }
