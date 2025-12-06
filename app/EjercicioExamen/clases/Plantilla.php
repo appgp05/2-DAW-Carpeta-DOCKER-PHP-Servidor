@@ -6,6 +6,7 @@ class Plantilla {
         $html = "";
 
         $html .= "<form method='post' action='index.php' id='accionesPosibles'>";
+        $html .= "<legend>Acciones posibles</legend>";
         if($botonMostrarClave){
             $html .= "<input type='submit' name='submit' value='Mostrar Clave'>";
         } else {
@@ -22,7 +23,7 @@ class Plantilla {
 
         $html .= "<form method='post' action='index.php' id='menuJugar'>";
 
-        $html .= "<p id='mensaje'>$mensaje</p>";
+        $html .= $mensaje;
 
         $html .= "<div id='selectsColores'>";
         for($i = 0; $i < 4; ++$i){
@@ -43,11 +44,13 @@ class Plantilla {
 
         return $html;
     }
-    public static function mostrarColoresClave($colores): string{
+    public static function mostrarClave(): string{
+        $colores = $_SESSION["clave"];
+
         $html = "";
 
         $html .= "<div>";
-        $html .= "<p>Clave Actual</p>";
+        $html .= "<h2>Clave Actual</h2>";
         $html .= "<div class='colores'>";
         forEach($colores as $clave => $valor){
             $html .= "<p class='color$valor'>$valor</p>";
@@ -57,15 +60,22 @@ class Plantilla {
 
         return $html;
     }
-    public static function mostrarJugadasAnteriores(array $jugadas): string {
+    public static function mostrarJugadasAnteriores(): string {
+        $jugadas = $_SESSION["jugadas"]??[];
+
         $jugadas = array_reverse($jugadas);
 
         $html = "";
-        $html .= "<div class='jugadas'>";
 
-        $html .= "<p>Jugada actual ".sizeof($jugadas)."</p>";
-        $html .= "<p>Resultado: ".sizeof(array_reverse($jugadas)[0]->getPosiciones()[0])." colores y posiciones</p>";
+        $html .= "<div id='infoJugadaActual'>";
+        if(sizeof($jugadas) > 0){
+            $html .= "<p class='mensajeInfo'>Jugada actual ".sizeof($jugadas)."</p>";
+            $html .= "<p class='mensajeInfo'>Resultado: ".sizeof($jugadas[0]->getPosiciones()[0])." colores y ".sizeof($jugadas[0]->getPosiciones()[1])." posiciones</p>";
+        } else {
+            $html .= "<p class='mensajeInfo'>No hay jugadas</p>";
+        }
 
+        $html .= "<div id='jugadas'>";
 
         forEach($jugadas as $claveJugada => $jugada){
             $html .= "<div class='jugada'>";
@@ -100,6 +110,19 @@ class Plantilla {
         }
 
         $html .= "</div>";
+
+        return $html;
+    }
+
+    public static function mostrarResultadoPartida(): string{
+        $html = "";
+
+        $html .= "<h1>Resultado de tu partida<h1>";
+        $html .= "<div id='resultadoPartida'>";
+        $html .= "<h2>Felicidades adivinaste la clave en ".sizeof($_SESSION['jugadas'])." jugadas</h2>";
+        $html .= self::mostrarClave();
+        $html .= self::mostrarJugadasAnteriores();
+
 
         return $html;
     }

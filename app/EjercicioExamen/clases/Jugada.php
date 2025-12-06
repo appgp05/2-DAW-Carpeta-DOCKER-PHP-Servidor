@@ -61,8 +61,6 @@ class Jugada {
             }
         }
 
-        var_dump([$posicionesNegras, $posicionesBlancas]);
-
         $this->posiciones = [$posicionesNegras, $posicionesBlancas];
     }
 }

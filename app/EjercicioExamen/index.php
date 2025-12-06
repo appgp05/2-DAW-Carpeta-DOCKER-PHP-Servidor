@@ -46,22 +46,26 @@ switch ($submit) {
         $jugadaCorrecta = $jugada->comprobarJugada();
 
         if($jugadaCorrecta){
+            if(sizeof($jugada->getPosiciones()[0]) == 4){
+                header("location: ./finJuego.php");
+            }
+
             $_SESSION["jugadas"][] = $jugada;
-            $mensaje = "Jugada realizada, vuelve a seleccionar para jugar";
+            $mensaje = "<p class='mensajeInfo'>Jugada realizada, vuelve a seleccionar para jugar</p>";
         } else {
-            $mensaje = "Debes seleccionar 4 colores para jugar";
+            $mensaje = "<p class='mensajeError'>Debes seleccionar 4 colores para jugar</p>";
         }
         break;
 }
 
 $htmlMostrarColoresClave = "";
 if($_SESSION["mostrarClave"]??true){
-    $htmlMostrarColoresClave .= Plantilla::mostrarColoresClave($_SESSION["clave"]);
+    $htmlMostrarColoresClave .= Plantilla::mostrarClave();
 }
 
 $htmlMostrarFormularioAcciones = Plantilla::mostrarFormularioAcciones($botonMostrarClave);
 $htmlMostrarFormularioJugar = Plantilla::mostrarFormularioJugar($_POST["colores"]??[], $mensaje);
-$htmlMostrarJugadasAnteriores = Plantilla::mostrarJugadasAnteriores($_SESSION["jugadas"]??[]);
+$htmlMostrarJugadasAnteriores = Plantilla::mostrarJugadasAnteriores();
 ?>
 
 
@@ -77,14 +81,20 @@ $htmlMostrarJugadasAnteriores = Plantilla::mostrarJugadasAnteriores($_SESSION["j
 </head>
 <body>
     <div id="masterMind">
-        <div id="opciones">
-            <?= $htmlMostrarFormularioAcciones ?>
-            <?= $htmlMostrarFormularioJugar ?>
+        <div class="seccion">
+            <h1>Opciones</h1>
+            <div class="contenido">
+                <?= $htmlMostrarFormularioAcciones ?>
+                <?= $htmlMostrarFormularioJugar ?>
+            </div>
         </div>
 
-        <div id="informacion">
-            <?= $htmlMostrarColoresClave ?>
-            <?= $htmlMostrarJugadasAnteriores ?>
+        <div class="seccion">
+            <h1>Información</h1>
+            <div class="contenido">
+                <?= $htmlMostrarColoresClave ?>
+                <?= $htmlMostrarJugadasAnteriores ?>
+            </div>
         </div>
     </div>
 </body>

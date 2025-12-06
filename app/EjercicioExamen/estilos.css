@@ -1,113 +1,121 @@
-#masterMind{
-    display: flex;
+/*#masterMind{*/
+/*    display: flex;*/
 
-    > *{
-        width: 100%;
-        height: 95vh;
-    }
+/*    > *{*/
+/*        width: 100%;*/
+/*        height: 95vh;*/
+/*    }*/
 
-    > #opciones{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
+/*    > #opciones{*/
 
-        margin: 10px;
-        background-color: rgb(255, 247, 232);
-        border: 2px #002ec5 solid;
+/*        > .contenido {*/
+/*            display: flex;*/
+/*            flex-direction: column;*/
+/*            align-items: center;*/
+/*            justify-content: center;*/
+/*            gap: 20px;*/
 
-        form{
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+/*            margin: 10px;*/
+/*            background-color: rgb(255, 247, 232);*/
+/*            border: 2px #002ec5 solid;*/
 
-            align-items: center;
-            justify-content: center;
+/*            form {*/
+/*                display: flex;*/
+/*                flex-direction: column;*/
+/*                gap: 20px;*/
 
-
-            padding: 20px;
-            background-color: rgb(216, 216, 216);
-            border-radius: 10px;
-            border: 2px black  solid;
+/*                align-items: center;*/
+/*                justify-content: center;*/
 
 
-            > #mensaje{
-                color: red;
-            }
+/*                padding: 20px;*/
+/*                background-color: rgb(216, 216, 216);*/
+/*                border-radius: 10px;*/
+/*                border: 2px black solid;*/
 
-            > #selectsColores{
-                display: flex;
-                gap: 10px;
-            }
-        }
+/*                > #selectsColores {*/
+/*                    display: flex;*/
+/*                    gap: 10px;*/
+/*                }*/
+/*            }*/
 
-        #accionesPosibles{}
+/*            #accionesPosibles {*/
+/*            }*/
 
-        #menuJugar{}
-    }
-    > #informacion{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
+/*            #menuJugar {*/
+/*            }*/
+/*        }*/
+/*    }*/
+/*    > #informacion{*/
 
-        margin: 10px;
-        background-color: rgb(255, 247, 232);
-        border: 2px #002ec5 solid;
+/*        > .contenido {*/
+/*            display: flex;*/
+/*            flex-direction: column;*/
+/*            align-items: center;*/
+/*            justify-content: center;*/
+/*            gap: 20px;*/
 
-        .jugadas{
-            width: 100%;
-            height: 600px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+/*            margin: 10px;*/
+/*            background-color: rgb(255, 247, 232);*/
+/*            border: 2px #002ec5 solid;*/
 
-            overflow-y: auto;
+/*            .jugadas {*/
+/*                width: 100%;*/
+/*                height: 600px;*/
+/*                display: flex;*/
+/*                flex-direction: column;*/
+/*                align-items: center;*/
+/*                justify-content: center;*/
 
-            > .jugada{
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
+/*                overflow-y: auto;*/
 
-                > .textoJugada{
+/*                > .jugada {*/
+/*                    display: flex;*/
+/*                    align-items: center;*/
+/*                    justify-content: center;*/
+/*                    flex-direction: column;*/
 
-                }
+/*                    > .textoJugada {*/
 
-                > .informacionJugada {
-                    display: flex;
-                    gap: 5px;
+/*                    }*/
 
-                    > .posiciones {
-                        display: flex;
-                        gap: 5px;
+/*                    > .informacionJugada {*/
+/*                        display: flex;*/
+/*                        gap: 5px;*/
 
-                        > * {
-                            padding: 5px;
+/*                        > .posiciones {*/
+/*                            display: flex;*/
+/*                            gap: 5px;*/
 
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
+/*                            > * {*/
+/*                                padding: 5px;*/
 
-                            border-radius: 3px;
-                        }
+/*                                display: flex;*/
+/*                                align-items: center;*/
+/*                                justify-content: center;*/
 
-                        > .posicionNegra {
-                            background-color: black;
-                            color: white;
-                        }
+/*                                border-radius: 3px;*/
+/*                            }*/
 
-                        > .posicionBlanca {
-                            border: 1px black solid;
-                        }
-                    }
-                }
-            }
-        }
-    }
+/*                            > .posicionNegra {*/
+/*                                background-color: black;*/
+/*                                color: white;*/
+/*                            }*/
+
+/*                            > .posicionBlanca {*/
+/*                                border: 1px black solid;*/
+/*                            }*/
+/*                        }*/
+/*                    }*/
+/*                }*/
+/*            }*/
+/*        }*/
+/*    }*/
+/*}*/
+
+*{
+    margin: 0px;
+    padding: 0px;
 }
 
 .colores{
@@ -124,6 +132,31 @@
         justify-content: center;
     }
 }
+
+h1{
+    font-size: 60px;
+    color: purple;
+    font-weight: bold;
+}
+h2{
+    font-size: 30px;
+    color: #000280;
+    font-weight: bold;
+    text-align: center;
+}
+p{
+    padding: 10px;
+}
+
+.mensajeInfo{
+    color: purple;
+    font-weight: bold;
+}
+.mensajeError{
+    color: red;
+    font-weight: bold;
+}
+
 
 .colorAzul{
     background-color: blue;
@@ -156,4 +189,101 @@
 .colorRosa{
     background-color: pink;
     color: black;
+}
+
+#masterMind{
+    display: flex;
+
+    > *{
+        width: 100%;
+        height: 95vh;
+    }
+
+    > .seccion{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+
+        margin: 10px;
+        background-color: rgb(255, 247, 232);
+        border: 2px #002ec5 solid;
+
+        > .contenido{
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            gap: 20px;
+        }
+    }
+}
+
+#jugadas {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow-y: auto;
+
+    > .jugada {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        > .informacionJugada {
+            display: flex;
+            gap: 5px;
+
+            > .posiciones {
+                display: flex;
+                gap: 5px;
+
+                > * {
+                    padding: 5px;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    border-radius: 3px;
+                }
+
+                > .posicionNegra {
+                    background-color: black;
+                    color: white;
+                }
+
+                > .posicionBlanca {
+                    border: 1px black solid;
+                }
+            }
+        }
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    align-items: center;
+    justify-content: center;
+
+
+    padding: 20px;
+    background-color: rgb(216, 216, 216);
+    border-radius: 10px;
+    border: 2px black solid;
+
+    > #selectsColores {
+        display: flex;
+        gap: 10px;
+    }
 }
