@@ -7,13 +7,17 @@ use clases\Jugada;
 
 session_start();
 
-$clave = new Clave;
+$clave = Clave::obtenerInstanciaClave();
+
+if(!isset($_SESSION["clave"])) {
+    $claveGenerada = $clave->generar();
+
+    $_SESSION["clave"] = $claveGenerada;
+}
 
 $submit = $_POST["submit"]??null;
 
 $mensaje = "";
-$html = "";
-
 $botonMostrarClave = $_SESSION["botonMostrarClave"]??true;
 
 switch ($submit) {
@@ -37,34 +41,27 @@ switch ($submit) {
         break;
     case "Jugar":
 
-        $jugada = new Jugada(1, $_POST["colores"]);
+        $jugada = new Jugada(sizeof($_SESSION["jugadas"]??[])+1, $_POST["colores"]);
 
         $jugadaCorrecta = $jugada->comprobarJugada();
 
         if($jugadaCorrecta){
             $_SESSION["jugadas"][] = $jugada;
+            $mensaje = "Jugada realizada, vuelve a seleccionar para jugar";
         } else {
             $mensaje = "Debes seleccionar 4 colores para jugar";
         }
-
         break;
 }
 
-
-var_dump($_POST);
-
-if(!isset($_SESSION["clave"])) {
-    $claveGenerada = $clave->generar();
-
-    $_SESSION["clave"] = $claveGenerada;
-}
-
+$htmlMostrarColoresClave = "";
 if($_SESSION["mostrarClave"]??true){
-    $html .= Plantilla::mostrarColores($_SESSION["clave"]);
+    $htmlMostrarColoresClave .= Plantilla::mostrarColoresClave($_SESSION["clave"]);
 }
-$html .= Plantilla::mostrarFormularioAcciones($botonMostrarClave);
-$html .= Plantilla::mostrarFormularioJugar($_POST["colores"]??[], $mensaje);
-$html .= Plantilla::mostrarJugadasAnteriores($_SESSION["jugadas"]??[]);
+
+$htmlMostrarFormularioAcciones = Plantilla::mostrarFormularioAcciones($botonMostrarClave);
+$htmlMostrarFormularioJugar = Plantilla::mostrarFormularioJugar($_POST["colores"]??[], $mensaje);
+$htmlMostrarJugadasAnteriores = Plantilla::mostrarJugadasAnteriores($_SESSION["jugadas"]??[]);
 ?>
 
 
@@ -79,6 +76,16 @@ $html .= Plantilla::mostrarJugadasAnteriores($_SESSION["jugadas"]??[]);
     <script src="script.js"></script>
 </head>
 <body>
-    <?= $html ?>
+    <div id="masterMind">
+        <div id="opciones">
+            <?= $htmlMostrarFormularioAcciones ?>
+            <?= $htmlMostrarFormularioJugar ?>
+        </div>
+
+        <div id="informacion">
+            <?= $htmlMostrarColoresClave ?>
+            <?= $htmlMostrarJugadasAnteriores ?>
+        </div>
+    </div>
 </body>
 </html>

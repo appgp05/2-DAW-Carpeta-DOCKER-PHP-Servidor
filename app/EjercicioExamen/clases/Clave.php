@@ -3,6 +3,7 @@
 namespace clases;
 
 class Clave {
+    private static Clave $instanciaClave;
     private array $clave;
     function __construct() {}
     function generar(): array{
@@ -34,6 +35,14 @@ class Clave {
     }
     public function obtener(){
         return $this->clave;
+    }
+
+    public static function obtenerInstanciaClave(){
+        if(!isset(self::$instanciaClave)){
+            self::$instanciaClave = new Clave();
+        }
+
+        return self::$instanciaClave;
     }
 }
 

@@ -8,6 +8,11 @@ class Jugada {
         private array $combinacionColores,
     ){}
 
+    public function getNumero(): int
+    {
+        return $this->numero;
+    }
+
     public function getCombinacionColores(): array{
         return $this->combinacionColores;
     }
@@ -30,10 +35,8 @@ class Jugada {
 
             $this->declararPosiciones();
 
-            var_dump("true");
             return true;
         } else {
-            var_dump("false");
             return false;
         }
     }
@@ -45,9 +48,6 @@ class Jugada {
         $posicionesBlancas =[];
 
         forEach($this->combinacionColores as $claveColorJugada => $colorJugada){
-            var_dump($colorJugada);
-            var_dump($claveJuego[$claveColorJugada]);
-
             if($colorJugada == ($claveJuego[$claveColorJugada]??null)){
                 $posicionesNegras[] = $claveColorJugada;
                 $claveJuego[$claveColorJugada] = null;
