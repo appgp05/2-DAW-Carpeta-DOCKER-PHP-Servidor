@@ -5,7 +5,24 @@ use clases\Plantilla;
 
 session_start();
 
-$html = Plantilla::mostrarResultadoPartida($_SESSION["clave"], $_SESSION["jugadas"]);
+$submit = $_POST["submit"]??null;
+
+switch($submit){
+    case "Volver a jugar":
+        unset($_SESSION["mostrarClave"]);
+        unset($_SESSION["clave"]);
+        unset($_SESSION["jugadas"]);
+
+        header("location: ./jugar.php");
+        break;
+    default:
+        if(!isset($_SESSION["usuario"])){
+            header("location: ./index.php");
+        }
+        break;
+}
+
+$htmlMostrarResultado = Plantilla::mostrarResultadoPartida($_SESSION["clave"], $_SESSION["jugadas"]);
 ?>
 <!doctype html>
 <html lang="en">
@@ -16,6 +33,6 @@ $html = Plantilla::mostrarResultadoPartida($_SESSION["clave"], $_SESSION["jugada
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    <?= $html ?>
+    <?= $htmlMostrarResultado ?>
 </body>
 </html>

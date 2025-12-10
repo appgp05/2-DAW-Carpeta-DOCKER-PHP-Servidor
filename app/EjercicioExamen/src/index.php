@@ -1,55 +1,59 @@
 <?php
-    require './../vendor/autoload.php';
+require './../vendor/autoload.php';
 
-    use Dotenv\Dotenv;
-    use clases\BaseDeDatos;
+use Dotenv\Dotenv;
+use clases\BaseDeDatos;
 
-    $dotenv = Dotenv::createImmutable(__DIR__."/..");
-    $dotenv->load();
+$dotenv = Dotenv::createImmutable(__DIR__."/..");
+$dotenv->load();
 
-    session_start();
+session_start();
 
-    $baseDeDatos = BaseDeDatos::getInstance();
+if(isset($_SESSION["usuario"])){
+    header("location: ./jugar.php");
+}
 
-    $submit = $_POST["submit"]??null;
-    switch ($submit) {
-        case "Iniciar Sesión":
-            $usuario = $_POST["usuario"]??null;
-            $password = $_POST["password"]??null;
+$baseDeDatos = BaseDeDatos::getInstance();
 
-            $usuarioEncontrado = $baseDeDatos->comprobarUsuario($usuario, $password);
+$submit = $_POST["submit"]??null;
+switch ($submit) {
+    case "Iniciar Sesión":
+        $usuario = $_POST["usuario"]??null;
+        $password = $_POST["password"]??null;
 
-            if($usuarioEncontrado != null){
-                $_SESSION["usuario"] = $usuario;
+        $usuarioEncontrado = $baseDeDatos->comprobarUsuario($usuario, $password);
 
-                header("location: jugar.php");
-            } else {
-                $mensaje = "<p class='mensajeInfo'>Usuario o contraseña incorrectos</p>";
-            }
+        if($usuarioEncontrado != null){
+            $_SESSION["usuario"] = $usuario;
 
-            break;
-        case "Registrarme":
-            $usuario = $_POST["usuario"]??null;
-            $password = $_POST["password"]??null;
+            header("location: jugar.php");
+        } else {
+            $mensaje = "<p class='mensajeInfo'>Usuario o contraseña incorrectos</p>";
+        }
 
-            $usuarioRegistrado = $baseDeDatos->registrarUsuario($usuario, $password);
+        break;
+    case "Registrarme":
+        $usuario = $_POST["usuario"]??null;
+        $password = $_POST["password"]??null;
 
-            if($usuarioRegistrado === true){
-                $_SESSION["usuario"] = $usuario;
+        $usuarioRegistrado = $baseDeDatos->registrarUsuario($usuario, $password);
 
-                header("location: jugar.php");
-            }
+        if($usuarioRegistrado === true){
+            $_SESSION["usuario"] = $usuario;
 
-            $mensaje = "<p class='mensajeError'>$usuarioRegistrado</p>";
+            header("location: jugar.php");
+        }
 
-            break;
-        default:
-            break;
-    }
+        $mensaje = "<p class='mensajeError'>$usuarioRegistrado</p>";
 
-    if(false){
-        header('location: ./jugar.php');
-    }
+        break;
+    default:
+        break;
+}
+
+if(false){
+    header('location: ./jugar.php');
+}
 ?>
 <!doctype html>
 <html lang="en">

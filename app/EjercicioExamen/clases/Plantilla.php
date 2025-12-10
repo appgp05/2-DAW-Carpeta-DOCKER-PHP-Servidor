@@ -12,10 +12,22 @@ class Plantilla {
 
         return $html;
     }
-    public static function mostrarFormularioAcciones($botonMostrarClave): string {
+    public static function mostrarCabecera($usuario, $nombreFichero): string{
         $html = "";
 
-        $html .= "<form method='post' action='index.php' id='accionesPosibles'>";
+        $html .= "<div class='cabecera'>";
+        $html .= "<p>Usuario: $usuario</p>";
+        $html .= "<form action='$nombreFichero' method='POST'>";
+        $html .= "<input type='submit' name='submit' value='Cerrar Sesión'>";
+        $html .= "</form>";
+        $html .= "</div>";
+
+        return $html;
+    }
+    public static function mostrarFormularioAcciones(bool $botonMostrarClave, string $nombreFichero): string {
+        $html = "";
+
+        $html .= "<form method='post' action='$nombreFichero' id='accionesPosibles'>";
         $html .= "<legend>Acciones posibles</legend>";
         if($botonMostrarClave){
             $html .= "<input type='submit' name='submit' value='Mostrar Clave'>";
@@ -27,11 +39,11 @@ class Plantilla {
 
         return $html;
     }
-    public static function mostrarFormularioJugar(array $coloresJugadaAnterior, string $mensaje): string {
+    public static function mostrarFormularioJugar(array $coloresJugadaAnterior, string $mensaje, string $nombreFichero): string {
         $colores = Colores::obtenerColores();
         $html = "";
 
-        $html .= "<form method='post' action='index.php' id='menuJugar'>";
+        $html .= "<form method='post' action='$nombreFichero' id='menuJugar'>";
 
         $html .= $mensaje;
 
@@ -77,7 +89,8 @@ class Plantilla {
             $html .= "<p class='mensajeInfo'>No hay jugadas</p>";
         }
 
-        $html .= self::mostrarJugadasAnteriores($jugadas);
+        $html .= self::mostrarJugadasAnteriores(array_reverse($jugadas));
+
 
         return $html;
     }
@@ -138,8 +151,10 @@ class Plantilla {
         $html .= "<div id='resultadoPartida'>";
         $html .= "<h2>Felicidades adivinaste la clave en ".sizeof($jugadas)." jugadas</h2>";
         $html .= self::mostrarClave($clave);
+        $html .= "<form action='finJuego.php' method='post'>";
+        $html .= "<input type='submit' name='submit' value='Volver a jugar'>";
+        $html .= "</form>";
         $html .= self::mostrarJugadasAnteriores($jugadas);
-
 
         return $html;
     }

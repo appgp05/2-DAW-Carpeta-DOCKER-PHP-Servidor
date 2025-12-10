@@ -18,7 +18,7 @@ if(!isset($_SESSION["clave"])) {
 $submit = $_POST["submit"]??null;
 
 $mensaje = "";
-$botonMostrarClave = $_SESSION["botonMostrarClave"]??true;
+$botonMostrarClave = isset($_SESSION["mostrarClave"])?!$_SESSION["mostrarClave"]:true;
 
 switch ($submit) {
     case "Mostrar Clave":
@@ -32,15 +32,14 @@ switch ($submit) {
 
         break;
     case "Resetear la Clave":
-        session_destroy();
-        session_start();
+        unset($_SESSION["clave"]);
+        unset($_SESSION["jugadas"]);
 
         $claveGenerada = $clave->generar();
 
         $_SESSION["clave"] = $claveGenerada;
         break;
     case "Jugar":
-
         $jugada = new Jugada(sizeof($_SESSION["jugadas"]??[])+1, $_POST["colores"]);
 
         $jugadaCorrecta = $jugada->comprobarJugada();
@@ -56,16 +55,25 @@ switch ($submit) {
             $mensaje = "<p class='mensajeError'>Debes seleccionar 4 colores para jugar</p>";
         }
         break;
+    case "Cerrar Sesión":
+        session_destroy();
+        header("location: ./index.php");
+        break;
+    default:
+        if(!isset($_SESSION["usuario"])){
+            header("location: ./index.php");
+        }
+        break;
 }
 
 $htmlMostrarColoresClave = "";
-if($_SESSION["mostrarClave"]??true){
+if(!$botonMostrarClave){
     $htmlMostrarColoresClave .= Plantilla::mostrarClave($_SESSION["clave"]);
 }
-
-$htmlMostrarFormularioAcciones = Plantilla::mostrarFormularioAcciones($botonMostrarClave);
-$htmlMostrarFormularioJugar = Plantilla::mostrarFormularioJugar($_POST["colores"]??[], $mensaje);
-$htmlMostrarJugadasAnteriores = Plantilla::mostrarJugadasAnterioresYActual($_SESSION['jugadas']);
+$htmlMostrarCabecera  = Plantilla::mostrarCabecera($_SESSION["usuario"], basename(__FILE__));
+$htmlMostrarFormularioAcciones = Plantilla::mostrarFormularioAcciones($botonMostrarClave, basename(__FILE__));
+$htmlMostrarFormularioJugar = Plantilla::mostrarFormularioJugar($_POST["colores"]??[], $mensaje,  basename(__FILE__));
+$htmlMostrarJugadasAnteriores = Plantilla::mostrarJugadasAnterioresYActual($_SESSION['jugadas']??[]);
 ?>
 
 
@@ -80,6 +88,7 @@ $htmlMostrarJugadasAnteriores = Plantilla::mostrarJugadasAnterioresYActual($_SES
     <script src="../script.js"></script>
 </head>
 <body>
+<?= $htmlMostrarCabecera ?>
 <div id="masterMind">
     <div class="seccion">
         <h1>Opciones</h1>
