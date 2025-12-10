@@ -1,75 +1,56 @@
 <?php
-require_once "./vendor/autoload.php";
+    require './../vendor/autoload.php';
 
-use clases\Plantilla;
-use clases\Clave;
-use clases\Jugada;
+    use Dotenv\Dotenv;
+    use clases\BaseDeDatos;
 
-session_start();
+    $dotenv = Dotenv::createImmutable(__DIR__."/..");
+    $dotenv->load();
 
-$clave = Clave::obtenerInstanciaClave();
+    session_start();
 
-if(!isset($_SESSION["clave"])) {
-    $claveGenerada = $clave->generar();
+    $baseDeDatos = BaseDeDatos::getInstance();
 
-    $_SESSION["clave"] = $claveGenerada;
-}
+    $submit = $_POST["submit"]??null;
+    switch ($submit) {
+        case "Iniciar Sesión":
+            $usuario = $_POST["usuario"]??null;
+            $password = $_POST["password"]??null;
 
-$submit = $_POST["submit"]??null;
+            $usuarioEncontrado = $baseDeDatos->comprobarUsuario($usuario, $password);
 
-$mensaje = "";
-$botonMostrarClave = $_SESSION["botonMostrarClave"]??true;
+            if($usuarioEncontrado != null){
+                $_SESSION["usuario"] = $usuario;
 
-switch ($submit) {
-    case "Mostrar Clave":
-        $_SESSION["mostrarClave"] = true;
-        $botonMostrarClave = false;
-
-        break;
-    case "Ocultar Clave":
-        $_SESSION["mostrarClave"] = false;
-        $botonMostrarClave = true;
-
-        break;
-    case "Resetear la Clave":
-        session_destroy();
-        session_start();
-
-        $claveGenerada = $clave->generar();
-
-        $_SESSION["clave"] = $claveGenerada;
-        break;
-    case "Jugar":
-
-        $jugada = new Jugada(sizeof($_SESSION["jugadas"]??[])+1, $_POST["colores"]);
-
-        $jugadaCorrecta = $jugada->comprobarJugada();
-
-        if($jugadaCorrecta){
-            if(sizeof($jugada->getPosiciones()[0]) == 4){
-                header("location: ./finJuego.php");
+                header("location: jugar.php");
+            } else {
+                $mensaje = "<p class='mensajeInfo'>Usuario o contraseña incorrectos</p>";
             }
 
-            $_SESSION["jugadas"][] = $jugada;
-            $mensaje = "<p class='mensajeInfo'>Jugada realizada, vuelve a seleccionar para jugar</p>";
-        } else {
-            $mensaje = "<p class='mensajeError'>Debes seleccionar 4 colores para jugar</p>";
-        }
-        break;
-}
+            break;
+        case "Registrarme":
+            $usuario = $_POST["usuario"]??null;
+            $password = $_POST["password"]??null;
 
-$htmlMostrarColoresClave = "";
-if($_SESSION["mostrarClave"]??true){
-    $htmlMostrarColoresClave .= Plantilla::mostrarClave();
-}
+            $usuarioRegistrado = $baseDeDatos->registrarUsuario($usuario, $password);
 
-$htmlMostrarFormularioAcciones = Plantilla::mostrarFormularioAcciones($botonMostrarClave);
-$htmlMostrarFormularioJugar = Plantilla::mostrarFormularioJugar($_POST["colores"]??[], $mensaje);
-$htmlMostrarJugadasAnteriores = Plantilla::mostrarJugadasAnteriores();
+            if($usuarioRegistrado === true){
+                $_SESSION["usuario"] = $usuario;
+
+                header("location: jugar.php");
+            }
+
+            $mensaje = "<p class='mensajeError'>$usuarioRegistrado</p>";
+
+            break;
+        default:
+            break;
+    }
+
+    if(false){
+        header('location: ./jugar.php');
+    }
 ?>
-
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -77,25 +58,14 @@ $htmlMostrarJugadasAnteriores = Plantilla::mostrarJugadasAnteriores();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
     <link rel="stylesheet" href="estilos.css">
-    <script src="script.js"></script>
 </head>
 <body>
-    <div id="masterMind">
-        <div class="seccion">
-            <h1>Opciones</h1>
-            <div class="contenido">
-                <?= $htmlMostrarFormularioAcciones ?>
-                <?= $htmlMostrarFormularioJugar ?>
-            </div>
-        </div>
-
-        <div class="seccion">
-            <h1>Información</h1>
-            <div class="contenido">
-                <?= $htmlMostrarColoresClave ?>
-                <?= $htmlMostrarJugadasAnteriores ?>
-            </div>
-        </div>
-    </div>
+    <form action="index.php" method="post">
+        <input type="text" name="usuario" value="<?= $usuario??"" ?>" placeholder="Usuario">
+        <input type="text" name="password" value="<?= $password??"" ?>" placeholder="Contrasena">
+        <input type="submit" name="submit" value="Iniciar Sesión">
+        <input type="submit" name="submit" value="Registrarme">
+        <?= $mensaje??"" ?>
+    </form>
 </body>
 </html>

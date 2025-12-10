@@ -9,6 +9,12 @@
       <excludeFolder url="file://$MODULE_DIR$/app/instituto/vendor/psr/container" />
       <excludeFolder url="file://$MODULE_DIR$/app/instituto/vendor/symfony/deprecation-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/app/EjercicioExamen/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/app/EjercicioExamen/vendor/graham-campbell/result-type" />
+      <excludeFolder url="file://$MODULE_DIR$/app/EjercicioExamen/vendor/phpoption/phpoption" />
+      <excludeFolder url="file://$MODULE_DIR$/app/EjercicioExamen/vendor/symfony/polyfill-ctype" />
+      <excludeFolder url="file://$MODULE_DIR$/app/EjercicioExamen/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/app/EjercicioExamen/vendor/symfony/polyfill-php80" />
+      <excludeFolder url="file://$MODULE_DIR$/app/EjercicioExamen/vendor/vlucas/phpdotenv" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

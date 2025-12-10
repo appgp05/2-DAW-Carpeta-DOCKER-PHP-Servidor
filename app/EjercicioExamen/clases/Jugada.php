@@ -51,12 +51,14 @@ class Jugada {
             if($colorJugada == ($claveJuego[$claveColorJugada]??null)){
                 $posicionesNegras[] = $claveColorJugada;
                 $claveJuego[$claveColorJugada] = null;
-            } else {
-                forEach($claveJuego as $claveColorClaveJuego => $colorClaveJuego){
-                    if($colorJugada == ($colorClaveJuego??null)){
-                        $posicionesBlancas[] = $claveColorJugada;
-                        $claveJuego[$claveColorClaveJuego] = null;
-                    }
+            }
+        }
+
+        forEach($this->combinacionColores as $claveColorJugada => $colorJugada){
+            forEach($claveJuego as $claveColorClaveJuego => $colorClaveJuego){
+                if($colorJugada == ($colorClaveJuego??null)){
+                    $posicionesBlancas[] = $claveColorJugada;
+                    $claveJuego[$claveColorClaveJuego] = null;
                 }
             }
         }

@@ -50,7 +50,7 @@ class Plantilla {
         $html = "";
 
         $html .= "<div>";
-        $html .= "<h2>Clave Actual</h2>";
+        $html .= "<h2>Clave</h2>";
         $html .= "<div class='colores'>";
         forEach($colores as $clave => $valor){
             $html .= "<p class='color$valor'>$valor</p>";
@@ -60,7 +60,7 @@ class Plantilla {
 
         return $html;
     }
-    public static function mostrarJugadasAnteriores(): string {
+    public static function mostrarJugadasAnterioresYActual(): string {
         $jugadas = $_SESSION["jugadas"]??[];
 
         $jugadas = array_reverse($jugadas);
@@ -75,7 +75,20 @@ class Plantilla {
             $html .= "<p class='mensajeInfo'>No hay jugadas</p>";
         }
 
+        $html .= self::mostrarJugadasAnteriores();
+
+        return $html;
+    }
+
+
+    public static function mostrarJugadasAnteriores(): string{
+        $jugadas = $_SESSION["jugadas"]??[];
+
+        $html = "";
+
         $html .= "<div id='jugadas'>";
+
+        $html .= "<h2>Histórico de jugadas</h2>";
 
         forEach($jugadas as $claveJugada => $jugada){
             $html .= "<div class='jugada'>";
@@ -117,7 +130,7 @@ class Plantilla {
     public static function mostrarResultadoPartida(): string{
         $html = "";
 
-        $html .= "<h1>Resultado de tu partida<h1>";
+        $html .= "<h1>Resultado de tu partida</h1>";
         $html .= "<div id='resultadoPartida'>";
         $html .= "<h2>Felicidades adivinaste la clave en ".sizeof($_SESSION['jugadas'])." jugadas</h2>";
         $html .= self::mostrarClave();

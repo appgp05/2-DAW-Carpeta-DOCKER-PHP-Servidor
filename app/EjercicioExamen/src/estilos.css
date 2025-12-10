@@ -118,6 +118,26 @@
     padding: 0px;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    align-items: center;
+    justify-content: center;
+
+
+    padding: 20px;
+    background-color: rgb(216, 216, 216);
+    border-radius: 10px;
+    border: 2px black solid;
+
+    > #selectsColores {
+        display: flex;
+        gap: 10px;
+    }
+}
+
 .colores{
     display: flex;
     align-items: center;
@@ -137,6 +157,7 @@ h1{
     font-size: 60px;
     color: purple;
     font-weight: bold;
+    text-align: center;
 }
 h2{
     font-size: 30px;
@@ -225,6 +246,7 @@ p{
 #jugadas {
     width: 100%;
     height: 500px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -265,25 +287,5 @@ p{
                 }
             }
         }
-    }
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    align-items: center;
-    justify-content: center;
-
-
-    padding: 20px;
-    background-color: rgb(216, 216, 216);
-    border-radius: 10px;
-    border: 2px black solid;
-
-    > #selectsColores {
-        display: flex;
-        gap: 10px;
     }
 }
