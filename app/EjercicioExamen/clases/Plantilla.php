@@ -2,6 +2,16 @@
 namespace clases;
 
 class Plantilla {
+    private static function mostrarColores($colores): string {
+        $html = "";
+        $html .= "<div class='colores'>";
+        forEach($colores as $clave => $valor){
+            $html .= "<p class='color$valor'>$valor</p>";
+        }
+        $html .= "</div>";
+
+        return $html;
+    }
     public static function mostrarFormularioAcciones($botonMostrarClave): string {
         $html = "";
 
@@ -51,18 +61,13 @@ class Plantilla {
 
         $html .= "<div>";
         $html .= "<h2>Clave</h2>";
-        $html .= "<div class='colores'>";
-        forEach($colores as $clave => $valor){
-            $html .= "<p class='color$valor'>$valor</p>";
-        }
-        $html .= "</div>";
+        $html .= self::mostrarColores($colores);
         $html .= "</div>";
 
         return $html;
     }
     public static function mostrarJugadasAnterioresYActual(): string {
         $jugadas = $_SESSION["jugadas"]??[];
-
         $jugadas = array_reverse($jugadas);
 
         $html = "";
@@ -83,6 +88,7 @@ class Plantilla {
 
     public static function mostrarJugadasAnteriores(): string{
         $jugadas = $_SESSION["jugadas"]??[];
+        $jugadas = array_reverse($jugadas);
 
         $html = "";
 
@@ -96,26 +102,12 @@ class Plantilla {
             $html .= "<p class='textoJugada'>Valor de la jugada ".$jugada->getNumero()."</p>";
 
             $html .= "<div class='informacionJugada'>";
-            $html .= "<div class='posiciones'>";
 
-            forEach($jugada->getPosiciones()[0] as $clave => $valor){
-                $html .= "<p class='posicionNegra'>$clave</p>";
-            }
-            forEach($jugada->getPosiciones()[1] as $clave => $valor){
-                $html .= "<p class='posicionBlanca'>$clave</p>";
-            }
-
-            $html .= "</div>";
-
-            $html .= "<div class='colores'>";
+            $html .= self::mostrarPosiciones($jugada);
 
             $coloresJugada = $jugada->getCombinacionColores();
-            $html .= "<p class='color".$coloresJugada[0]."'>".$coloresJugada[0]."</p>";
-            $html .= "<p class='color".$coloresJugada[1]."'>".$coloresJugada[1]."</p>";
-            $html .= "<p class='color".$coloresJugada[2]."'>".$coloresJugada[2]."</p>";
-            $html .= "<p class='color".$coloresJugada[3]."'>".$coloresJugada[3]."</p>";
 
-            $html .= "</div>";
+            $html .= self::mostrarColores($coloresJugada);
 
             $html .= "</div>";
 
@@ -124,6 +116,22 @@ class Plantilla {
 
         $html .= "</div>";
 
+        return $html;
+    }
+
+    private static function mostrarPosiciones($jugada): string{
+        $html = "";
+
+        $html .= "<div class='posiciones'>";
+
+        forEach($jugada->getPosiciones()[0] as $clave => $valor){
+            $html .= "<p class='posicionNegra'>$clave</p>";
+        }
+        forEach($jugada->getPosiciones()[1] as $clave => $valor){
+            $html .= "<p class='posicionBlanca'>$clave</p>";
+        }
+
+        $html .= "</div>";
         return $html;
     }
 
