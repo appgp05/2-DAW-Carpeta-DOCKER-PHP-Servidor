@@ -149,7 +149,11 @@ class Plantilla {
 
         $html .= "<h1>Resultado de tu partida</h1>";
         $html .= "<div id='resultadoPartida'>";
-        $html .= "<h2>Felicidades adivinaste la clave en ".sizeof($jugadas)." jugadas</h2>";
+        if($jugadas >= 10){
+            $html .= "<h2>Ohhh... Vuelve a intentarlo, has sobrepasado el límite de intentos, has realizado ".sizeof($jugadas)." jugadas</h2>";
+        } else {
+            $html .= "<h2>Felicidades adivinaste la clave en ".sizeof($jugadas)." jugadas</h2>";
+        }
         $html .= self::mostrarClave($clave);
         $html .= "<form action='finJuego.php' method='post'>";
         $html .= "<input type='submit' name='submit' value='Volver a jugar'>";

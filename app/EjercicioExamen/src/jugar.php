@@ -50,6 +50,11 @@ switch ($submit) {
             }
 
             $_SESSION["jugadas"][] = $jugada;
+
+            if(sizeof($_SESSION["jugadas"]) >= 10){
+                header("location: ./finJuego.php");
+            }
+
             $mensaje = "<p class='mensajeInfo'>Jugada realizada, vuelve a seleccionar para jugar</p>";
         } else {
             $mensaje = "<p class='mensajeError'>Debes seleccionar 4 colores para jugar</p>";
