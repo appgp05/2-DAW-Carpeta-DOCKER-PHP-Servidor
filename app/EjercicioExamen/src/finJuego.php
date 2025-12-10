@@ -5,7 +5,7 @@ use clases\Plantilla;
 
 session_start();
 
-$html = Plantilla::mostrarResultadoPartida();
+$html = Plantilla::mostrarResultadoPartida($_SESSION["clave"], $_SESSION["jugadas"]);
 ?>
 <!doctype html>
 <html lang="en">

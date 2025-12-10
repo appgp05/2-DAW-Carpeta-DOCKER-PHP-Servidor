@@ -54,20 +54,17 @@ class Plantilla {
 
         return $html;
     }
-    public static function mostrarClave(): string{
-        $colores = $_SESSION["clave"];
-
+    public static function mostrarClave($clave): string{
         $html = "";
 
         $html .= "<div>";
         $html .= "<h2>Clave</h2>";
-        $html .= self::mostrarColores($colores);
+        $html .= self::mostrarColores($clave);
         $html .= "</div>";
 
         return $html;
     }
-    public static function mostrarJugadasAnterioresYActual(): string {
-        $jugadas = $_SESSION["jugadas"]??[];
+    public static function mostrarJugadasAnterioresYActual($jugadas): string {
         $jugadas = array_reverse($jugadas);
 
         $html = "";
@@ -80,14 +77,13 @@ class Plantilla {
             $html .= "<p class='mensajeInfo'>No hay jugadas</p>";
         }
 
-        $html .= self::mostrarJugadasAnteriores();
+        $html .= self::mostrarJugadasAnteriores($jugadas);
 
         return $html;
     }
 
 
-    public static function mostrarJugadasAnteriores(): string{
-        $jugadas = $_SESSION["jugadas"]??[];
+    public static function mostrarJugadasAnteriores($jugadas): string{
         $jugadas = array_reverse($jugadas);
 
         $html = "";
@@ -135,14 +131,14 @@ class Plantilla {
         return $html;
     }
 
-    public static function mostrarResultadoPartida(): string{
+    public static function mostrarResultadoPartida($clave, $jugadas): string{
         $html = "";
 
         $html .= "<h1>Resultado de tu partida</h1>";
         $html .= "<div id='resultadoPartida'>";
-        $html .= "<h2>Felicidades adivinaste la clave en ".sizeof($_SESSION['jugadas'])." jugadas</h2>";
-        $html .= self::mostrarClave();
-        $html .= self::mostrarJugadasAnteriores();
+        $html .= "<h2>Felicidades adivinaste la clave en ".sizeof($jugadas)." jugadas</h2>";
+        $html .= self::mostrarClave($clave);
+        $html .= self::mostrarJugadasAnteriores($jugadas);
 
 
         return $html;

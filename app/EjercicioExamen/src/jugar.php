@@ -60,12 +60,12 @@ switch ($submit) {
 
 $htmlMostrarColoresClave = "";
 if($_SESSION["mostrarClave"]??true){
-    $htmlMostrarColoresClave .= Plantilla::mostrarClave();
+    $htmlMostrarColoresClave .= Plantilla::mostrarClave($_SESSION["clave"]);
 }
 
 $htmlMostrarFormularioAcciones = Plantilla::mostrarFormularioAcciones($botonMostrarClave);
 $htmlMostrarFormularioJugar = Plantilla::mostrarFormularioJugar($_POST["colores"]??[], $mensaje);
-$htmlMostrarJugadasAnteriores = Plantilla::mostrarJugadasAnterioresYActual();
+$htmlMostrarJugadasAnteriores = Plantilla::mostrarJugadasAnterioresYActual($_SESSION['jugadas']);
 ?>
 
 
