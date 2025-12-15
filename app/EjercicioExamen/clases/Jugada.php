@@ -23,18 +23,19 @@ class Jugada {
     }
 
 
-    public function comprobarJugada(): bool{
+    public function comprobarJugadaCorrecta(): bool{
         if(array_find($this->combinacionColores, fn($color) => $color == "Colores") == null){
-            forEach($this->combinacionColores as $clave => $valor){
-                $todosLosColores = Colores::obtenerColores();
-
-                $coloreCompleto = array_find($todosLosColores, fn($color) => $color == $valor);
-
-                $this->combinacionColores[$clave] = $coloreCompleto;
-            }
 
             $this->declararPosiciones();
 
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function comprobarJugadaGanada(): bool{
+        if(sizeof($this->posiciones[0]) == 4){
             return true;
         } else {
             return false;

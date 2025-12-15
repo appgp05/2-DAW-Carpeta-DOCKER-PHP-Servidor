@@ -2,7 +2,7 @@
 namespace clases;
 
 class Plantilla {
-    private static function mostrarColores($colores): string {
+    private static function mostrarColores(array $colores): string {
         $html = "";
         $html .= "<div class='colores'>";
         forEach($colores as $clave => $valor){
@@ -40,7 +40,7 @@ class Plantilla {
         return $html;
     }
     public static function mostrarFormularioJugar(array $coloresJugadaAnterior, string $mensaje, string $nombreFichero): string {
-        $colores = Colores::obtenerColores();
+        $colores = Constantes::obtenerColores();
         $html = "";
 
         $html .= "<form method='post' action='$nombreFichero' id='menuJugar'>";
@@ -149,7 +149,7 @@ class Plantilla {
 
         $html .= "<h1>Resultado de tu partida</h1>";
         $html .= "<div id='resultadoPartida'>";
-        if($jugadas >= 10){
+        if(sizeof($jugadas) > 14){
             $html .= "<h2>Ohhh... Vuelve a intentarlo, has sobrepasado el límite de intentos, has realizado ".sizeof($jugadas)." jugadas</h2>";
         } else {
             $html .= "<h2>Felicidades adivinaste la clave en ".sizeof($jugadas)." jugadas</h2>";

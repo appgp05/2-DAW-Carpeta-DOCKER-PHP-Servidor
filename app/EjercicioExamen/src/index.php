@@ -23,7 +23,7 @@ switch ($submit) {
 
         $usuarioEncontrado = $baseDeDatos->comprobarUsuario($usuario, $password);
 
-        if($usuarioEncontrado != null){
+        if($usuarioEncontrado === true){
             $_SESSION["usuario"] = $usuario;
 
             header("location: jugar.php");

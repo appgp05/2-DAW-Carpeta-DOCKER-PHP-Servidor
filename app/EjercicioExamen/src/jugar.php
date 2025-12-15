@@ -42,16 +42,16 @@ switch ($submit) {
     case "Jugar":
         $jugada = new Jugada(sizeof($_SESSION["jugadas"]??[])+1, $_POST["colores"]);
 
-        $jugadaCorrecta = $jugada->comprobarJugada();
+        $jugadaCorrecta = $jugada->comprobarJugadaCorrecta();
 
         if($jugadaCorrecta){
-            if(sizeof($jugada->getPosiciones()[0]) == 4){
+            if($jugada->comprobarJugadaGanada()){
                 header("location: ./finJuego.php");
             }
 
             $_SESSION["jugadas"][] = $jugada;
 
-            if(sizeof($_SESSION["jugadas"]) >= 10){
+            if(sizeof($_SESSION["jugadas"]) > 14){
                 header("location: ./finJuego.php");
             }
 

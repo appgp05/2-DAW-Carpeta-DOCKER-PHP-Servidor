@@ -40,9 +40,14 @@ class BaseDeDatos {
     }
 
     public function registrarUsuario($nombre, $password) {
-        $sentencia = "INSERT INTO usuarios (nombre, password) VALUES ('$nombre', '$password')";
+        $passwordHasehada = password_hash($password, PASSWORD_DEFAULT);
+        $sentencia = "INSERT INTO usuarios (nombre, password) VALUES (?, ?)";
+
+        $sentenciaParametrizada = $this->connection->prepare($sentencia);
+        $sentenciaParametrizada->bind_param("ss", $nombre, $passwordHasehada);
+
         try {
-            $response = $this->connection->query($sentencia);
+            $response = $sentenciaParametrizada->execute();
 
             if($response){
                 return true;
@@ -59,11 +64,20 @@ class BaseDeDatos {
         }
     }
 
-    public function comprobarUsuario($nombre, $password) {
-        $sentencia = "SELECT * FROM usuarios WHERE nombre = '$nombre' AND password = '$password'";
+    public function comprobarUsuario($nombre, $password): bool|string {
+        $sentencia = "SELECT * FROM usuarios WHERE nombre = ?";
+
+        $sentenciaParametrizada = $this->connection->prepare($sentencia);
+        $sentenciaParametrizada->bind_param("s", $nombre);
+
         try {
-            $response = $this->connection->query($sentencia);
-            if($response){
+            $response = $sentenciaParametrizada->execute();
+
+            $response = $sentenciaParametrizada->get_result();
+            $passwordHasehada = $response->fetch_assoc()["password"]??"";
+
+            if(password_verify($password, $passwordHasehada)){
+                return true;
                 return $response->fetch_assoc();
             } else {
                 return "No se ha podido comprobar el usuario";
