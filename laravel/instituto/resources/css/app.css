@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+    --height-header: 15vh;
+    --height-nav: 10vh;
+    --height-main: 50vh;
+    --height-footer: 25vh;
+
+    --color-header: rgb(147, 178, 255);
+    --color-nav: rgb(148, 223, 255);
+    --color-main: rgb(148, 255, 255);
+    --color-footer: rgb(184, 105, 0);
+}

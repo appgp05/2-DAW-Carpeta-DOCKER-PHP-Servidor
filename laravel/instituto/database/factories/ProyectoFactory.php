@@ -1,0 +1,31 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Proyecto>
+ */
+class ProyectoFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        $projects = config("proyectos");
+
+        $name = array_rand($projects, 1);
+
+        return [
+            //
+            'name' => $name,
+            'hours' => fake()->randomDigit(),
+            'description' => $projects[$name],
+            'starting_date' => fake()->date()
+        ];
+    }
+}
